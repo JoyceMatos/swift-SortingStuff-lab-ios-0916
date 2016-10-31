@@ -9,6 +9,8 @@
 import Foundation
 
 
+//: Playground - noun: a place where people can play
+
 struct ToyBin {
     
     var ships: [Ship] = []
@@ -16,9 +18,45 @@ struct ToyBin {
     var bowlingPins: [BowlingPin] = []
     var musicCDs: [MusicCD] = []
     
-    // TODO: Implement all of the sort functions (lets organize this toy bin!)
+    mutating func sortShips() {
+        ships = ships.sorted { (a, b) -> Bool in
+            
+            return a.age > b.age
+        }
+        
+        for (index, value) in ships.enumerated() {
+            if value.name == "Titanic" {
+                ships.remove(at: index)
+                ships.insert(value, at: 0)
+            }
+        }
+        
+        
+    }
     
- 
+    mutating func sortBooks() {
+        books = books.sorted(by: { $0.name < $1.name })
+        
+        
+    }
+    
+    mutating func sortBowlingPins() {
+        bowlingPins = bowlingPins.sorted(by: { $0.color.rawValue < $1.color.rawValue })
+        
+    }
+    
+    mutating func sortMusicCDs() {
+        musicCDs = musicCDs.sorted { ($0.name > $1.name)}
+        
+        for (index, value) in musicCDs.enumerated() {
+            if value.name == "Drake" {
+                musicCDs.remove(at: index)
+                musicCDs.insert(value, at: 0)
+            }
+        }
+    }
+    
+    
 }
 
 
@@ -58,3 +96,10 @@ struct MusicCD {
     var year: Int
     var songs: [String]
 }
+
+
+
+
+
+
+
